@@ -1,6 +1,4 @@
 
-Yes, the logic implemented in your home.html, your route(@app.route('/{{recipe}}') and in your description.html are all doable.
-
 Here is a breakdown of each file:
 
 ---->home.html
