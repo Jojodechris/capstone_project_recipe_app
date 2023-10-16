@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Recipes</title>
+</head>
+<body>
+    <h1>user Recipes</h1>
+
+    <ul>
+        {% for recipe in user_recipe %}
+            <li>
+                <h2>{{ recipe.name }}</h2>
+                <img src="{{ recipe.image }}" alt="{{ recipe.name }}" width="200">
+                <p>{{ recipe.description }}</p>
+                <h3>Ingredients</h3>
+                <ul>
+                <li>{{ ingredient }}</li>
+                </ul>
+
+        
+        {% endfor %}
+    </ul>
+</body>
+</html>

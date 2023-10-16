@@ -1,3 +1,4 @@
+<!-- {{ b.zip([recipe_names], [recipe_descriptions]) }} -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-    {% for description in recipe_description %}
+    {% for name,description in zip(recipe_names,recipe_descriptions) %}
+    <h1>{{name}}</h1>
     <p>{{description}}</p>
     {% endfor %}
 </body>

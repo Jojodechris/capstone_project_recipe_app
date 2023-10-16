@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Warbler</title>
+  <title>capstone</title>
 
   <link rel="stylesheet"
         href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
@@ -20,29 +20,37 @@
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Food Recipe app!!</a>
+    <a href="/" class="navbar-brand">Food Recipe app!!</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navigation">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">profile</a>
-        <a class="nav-item nav-link" href="#">create a recipe</a>
-        <a class="nav-item nav-link" href="#">{{g.user.username}}'s favorite recipe</a>
+        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/users/profile">profile</a>
+        <a class="nav-item nav-link" href="/create/{{g.user.id}}">create a recipe</a>
+        <a class="nav-item nav-link" href="/favorite">{{user.username}}'s favorite recipe</a>
+        <a class="nav-item nav-link" href="/logout">Log out</a>
+
       </div>
     </div>
   </nav>
     <div class="container">
-    <h>hey {{g.user.username}},nice to see you here!  what are you looking for?</h1>
+    <h>hey {{user.username}},nice to see you here!  what are you looking for?</h1>
     <ul>
-        <a href="/foodfrom"><li>Food from various countries</a></li>
+        <!-- <a href="/foodfrom"><li>Food from various countries</a></li> -->
 
-        <li>Food recipe created by all users</li>
-        <li>Food recipe created by you</li>
-        {% for recipe in recipe_types %}
-        <a href="/{{recipe}}"><li>{{recipe}}</li></a>
-        {% endfor %}
+        <a href="/others/{{g.user.id}}"><li>Food recipe created by others users</li>
+        <a href="/creation/{{g.user.id}}"><li>Food recipe created by you</li></a>
+        <a href="/Appetizer"><li>Appetizer</li></a>
+        <a href="/Breakfast"><li>Breakfast</li></a>
+        <a href="/Dessert"><li>Dessert</li></a>
+        <a href="/Baked"><li>Baked</li></a>
+        <a href="/Salad"><li>Salad and Salad Dressing</li></a>
+        <a href="/Snack"><li>Snack</li></a>
+        <a href="/Beverage"><li>Beverage</li></a>
+        <a href="/Lunch"><li>Lunch</li></a>
+        <a href="/Main-dish"><li>Main-dish</li></a>
     </ul>
 </div>
 </body>
