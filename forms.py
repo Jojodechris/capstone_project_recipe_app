@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField,TextAreaField
 from wtforms.validators import DataRequired, Email, Length
 
 
@@ -27,8 +27,8 @@ class creationForm(FlaskForm):
     """Recipe form"""
     name=StringField("Enter your recipe's name", validators=[DataRequired()])
     image=StringField("enter an image url to display your recipe",validators=[DataRequired()])
-    description=StringField("enter a description of your recipe",validators=[DataRequired()])
-    ingredients= StringField("ingredients", validators= [DataRequired()])
+    description=TextAreaField("enter a description of your recipe",validators=[DataRequired()])
+    ingredients= TextAreaField("ingredients", validators= [DataRequired()])
     # instructions= StringField("instructions")
 
 

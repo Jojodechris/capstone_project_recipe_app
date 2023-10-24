@@ -19,12 +19,13 @@
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="/">Home</a>
             <a class="nav-item nav-link active" href="/users/profile">profile</a>
-            <a class="nav-item nav-link" href="/create">create a recipe<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">{{g.user.username}}'s favorite recipe</a>
-            <a class="nav-item nav-link" href="#"></a>
+            <a class="nav-item nav-link" href="/create/{{g.user.id}}">create a recipe<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/favorite">{{g.user.username}}'s favorite recipe</a>
+            <a class="nav-item nav-link" href="/logout">Log out</a>
           </div>
         </div>
       </nav>
+     
       <div class="container">
         <h1 class="display-1 text-center">EDIT YOUR PROFILE</h1>
         <div class="row justify-content-center">

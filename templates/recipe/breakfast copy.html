@@ -1,0 +1,31 @@
+{% extends "base2.html" %}
+
+{% block recipe_content %}
+{% for recipe in unique_recipe_list %}
+<li>
+    <!-- <h2>{{ recipe.recipe_name }}</h2> -->
+    <div class="rating">
+      <div class="like">
+        <a href="/Breakfastup/{{recipe.id }}" class="black up"><i class="fa fa-thumbs-up fa-3x like" data-recipe-id="{{ recipe.id }}"></i></a>
+      </div>
+      <div class="dislike">
+        <a href="/Breakfastdown/{{ recipe.id }}" class="black down"><i class="fa fa-thumbs-down fa-3x like" data-recipe-id="{{ recipe.id }}"></i></a>
+      </div> 
+      <h2>{{ recipe.recipe_name }}</h2>
+    <img src="{{ recipe.recipe_image }}" alt="{{ recipe.recipe_name }}" width="200">
+    <p>{{ recipe.recipe_description }}</p>
+    <h3>Ingredients</h3>
+    {% for ingredient in recipe.ingredients %}
+    <ul>
+    <li>{{ ingredient }}</li>
+    </ul>
+    {% endfor %}
+</li>
+{% endfor %}
+{% endblock %}
+
+
+
+
+
+

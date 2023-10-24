@@ -87,6 +87,8 @@ class Recipe(db.Model):
     ingredients =db.Column(ARRAY(String))
     # store recipe that have been selected as favorite
     favorite_recipe=db.Column(db.Boolean, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    
 
 
     def is_favorite(self):
