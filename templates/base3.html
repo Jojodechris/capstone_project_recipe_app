@@ -1,0 +1,35 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>capstone</title>
+
+  <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://unpkg.com/popper"></script>
+  <script src="https://unpkg.com/bootstrap"></script>
+
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <!-- <link rel="stylesheet" href="/static/stylesheets/style.css"> -->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">Food Recipe app!!</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+          <div class="navbar-nav">
+            {% block nav_content %}{% endblock %}
+          </div>
+        </div>
+      </nav>
+      {% block view_content %}{% endblock %}
+    </body>
+    </html>

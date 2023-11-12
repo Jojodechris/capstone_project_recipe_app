@@ -8,7 +8,7 @@ from flask_bcrypt import check_password_hash,bcrypt
 # from flask_bcrypt import 
 # from bcrypt import  check_password_hash
 from forms import SignUpForm,LoginForm,EditPassword,creationForm,userEditForm
-from models import db,User,Recipe,RecipeUser,connect_db
+from models import db,User,Recipe,RecipeUser,connect_db,Favorite
 
 CURR_USER_KEY = "curr_user"
 
@@ -37,18 +37,19 @@ db.create_all()
 
 @app.before_request
 def add_user_to_g():
+        
         # import pdb
         # pdb.set_trace()
                                         
-        if CURR_USER_KEY in session:
-            g.user = User.query.get(session[CURR_USER_KEY])
-        g.user=None
+        # if CURR_USER_KEY in session:
+        #     g.user = User.query.get(session[CURR_USER_KEY])
+        # g.user=None
 
 
         #     METHOD = "recipes.search.v3"
         #     format_type = "json"
         # # recipe_types= "Appetizer"
-        #     access_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE2OTgxMTc5NTMsImV4cCI6MTY5ODIwNDM1MywiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI3M2Q1YTlkYWI3NmQ0MjZkOGNlMTlhYzE1OTljMDg4NiIsInNjb3BlIjpbImJhc2ljIl19.RLgE5YxULM2dIagy9WLkCJf7QljOmKUnzmMIeDgmyIZWX0b9qKB41fz4_fYDlTRZ7dioFC9ltFVD7JNH8_q-kKapNKLoTiyum80crw2Cr9wIQZ5yI83DFK1togAkCAhm-F66MurBWXE-i23yXmnokbAw0KoqxAF9_M_Xvdf-hPXnGHKOSbz7DDEj2RG4YS09bMv0V92DJoB9mohds4QTZ42cxcHg7HfOewddfOSFT10rZ9vtLaNwkr1sJ1XGlWs82bg5ECIlHZKMe61By_Hj0Rbekf-5QZWTea0wlSJJdu1DIDIhNI17c7z0-fSeM0bxfsHZ24QvJgo2A-bzEV8n5Q"
+        #     access_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE2OTg0MjgyODUsImV4cCI6MTY5ODUxNDY4NSwiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI3M2Q1YTlkYWI3NmQ0MjZkOGNlMTlhYzE1OTljMDg4NiIsInNjb3BlIjpbImJhc2ljIl19.VI2LyCtHDpCcSB6JiZmbw_mnv7mEUuumd8LO2TZP53pTettEF84h6Ob3kIeoPuGHPV-gDDWh539qKCdY67vrGhS4lIYa1LWIdDWoHIdUsZJNTu6TEjuQLDrxWQ5Yu_KMMe3AusirkGqeTsxLSjF0OtMWX4PZWsY_k0Lhqii1j9AmDIqKPBZvpH_0nXPnoly2r83rou4kxCcI0edg8VsJQKLX4PlgI0Tuul2yZ8zZEV4HuWu-oaLi7SWiS1OnfupJV_yQ92sGBn64R_r3F7dS-trhpiDCa9RtmUs-MSrAaiGWSYyVxd2VsjI1cz6xejQY6_u1JZzChcTevEO2GiUlkA"
         #     response = requests.get(
         #     "https://platform.fatsecret.com/rest/server.api",
         #     params={
@@ -83,20 +84,21 @@ def add_user_to_g():
         #                                     recipe_image=recipe["recipe_image"],
         #                                     recipe_type=recipe["recipe_types"]["recipe_type"],
         #                                     ingredients=recipe['recipe_ingredients']['ingredient'],
-        #                                     user_id=g.user.id
+        #                                     # user_id=g.user.id
                                         
         #                 )
         #                 db.session.add(new_recipe)
         #                 db.session.commit()
-
-           
+            
+        #     if CURR_USER_KEY in session:
+        #         g.user = User.query.get(session[CURR_USER_KEY])
 
         
 
         # METHOD = "recipes.search.v3"
         # format_type = "json"
         # # recipe_types= "Appetizer"
-        # access_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE2OTgxMTc5NTMsImV4cCI6MTY5ODIwNDM1MywiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI3M2Q1YTlkYWI3NmQ0MjZkOGNlMTlhYzE1OTljMDg4NiIsInNjb3BlIjpbImJhc2ljIl19.RLgE5YxULM2dIagy9WLkCJf7QljOmKUnzmMIeDgmyIZWX0b9qKB41fz4_fYDlTRZ7dioFC9ltFVD7JNH8_q-kKapNKLoTiyum80crw2Cr9wIQZ5yI83DFK1togAkCAhm-F66MurBWXE-i23yXmnokbAw0KoqxAF9_M_Xvdf-hPXnGHKOSbz7DDEj2RG4YS09bMv0V92DJoB9mohds4QTZ42cxcHg7HfOewddfOSFT10rZ9vtLaNwkr1sJ1XGlWs82bg5ECIlHZKMe61By_Hj0Rbekf-5QZWTea0wlSJJdu1DIDIhNI17c7z0-fSeM0bxfsHZ24QvJgo2A-bzEV8n5Q"
+        # access_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE2OTg2MjE0NjMsImV4cCI6MTY5ODcwNzg2MywiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI3M2Q1YTlkYWI3NmQ0MjZkOGNlMTlhYzE1OTljMDg4NiIsInNjb3BlIjpbImJhc2ljIl19.Urdl8o0Tw9ZUThP-0tvE0o18rC1i6apoy1zS536T7d2UC1SkYVqpECNvZkz08fHYRT1-eON6ShUB66LMMktBN2aJLFFDU8r73-NfDWQqZLd7rRblhyFbmTptqHuygopYeO19nyNkTpOdSEWh8fP17I0oCsOMTZL188NaaAms9lUcdcGI6vamhlrvwd86Jj1KuVTelmUZEc67Pw0xJ6gr-7qcthEexJYjkHyGGtCu6sqH2W3RrtTqcTLKRF1oS1-Qdq9Bb8qEmeso5CfpmTUQboq5700sHItvGBHs9EnvA2W1cyrFxSSotAp_il385nuDfZZ69tofjRgGA2zFDGdC-w"
         # response = requests.get(
         # "https://platform.fatsecret.com/rest/server.api",
         # params={
@@ -129,11 +131,23 @@ def add_user_to_g():
         #                                     recipe_image=recipe["recipe_image"],
         #                                     recipe_type=recipe["recipe_types"]["recipe_type"],
         #                                     ingredients=recipe['recipe_ingredients']['ingredient'],
-        #                                     user_id=g.user.id
+        #                                     # user_favorites={}
                                         
         #                 )
         #                 db.session.add(new_recipe)
         #                 db.session.commit()
+
+        if CURR_USER_KEY in session:
+            g.user = User.query.get(session[CURR_USER_KEY])
+        # g.user=None
+
+
+
+# @app.errorhandler(404)
+# def page_not_found(e):
+#     """404 NOT FOUND page."""
+
+#     return render_template('404.html'), 404
 
     
 def do_login(user):
@@ -141,6 +155,7 @@ def do_login(user):
 
 
     session[CURR_USER_KEY] = user.id
+    # user=g.user
 
 
 def do_logout():
@@ -155,6 +170,7 @@ def do_logout():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """Handle user login."""
+    
 
 
 
@@ -168,9 +184,11 @@ def login():
                                  form.password.data)
         
 
+        
+
         if user:
             do_login(user)
-            flash(f"Hello, {user.username}!", "success")
+            flash(f"Hello, {user.username}!,you have successfuly logged in", "success")
         
             return redirect("/")
 
@@ -185,7 +203,7 @@ def logout():
     """Handle logout of user."""
 
     do_logout()
-    flash("you have successfuly log out", 'success')
+    flash("you have successfuly log out", "success")
     return redirect('/login')
     # flash("Invalid credentials.", 'danger')
 
@@ -240,10 +258,20 @@ def homepage():
   - anon users: no messages
   - logged in: 100 most recent messages of followed_users
   """
-  user=g.user
+#   form = LoginForm()
 
-  if user:
-    return render_template('home.html',user=user)
+# #   if form.validate_on_submit():
+#     user = User.authenticate(form.username.data,
+#                                  form.password.data)
+    # user =g.user
+
+#   g.user = User.query.get(session[CURR_USER_KEY])
+  if g.user:
+        
+#   if 'user_id' in session:  # Check if the user is logged in
+#         user_id = session['user_id']
+#         user = User.query.get(user_id)  # Replace with your user retrieval logic
+        return render_template('home.html',user=g.user)
   form=LoginForm()
   return redirect("/login")
 
@@ -401,38 +429,6 @@ def handleModification():
     
 
 
-
-
-
-@app.route("/Breakfast")
-def Breakfast():
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Breakfast")).all()
-    for result in results:
-            recipes = []
-
-    # Extract the required fields from the results
-    for result in results:
-        recipes.append({
-            "id":result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            "ingredients":result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes :
-        unique_recipes[recipe['recipe_name']] = recipe
-
-# Convert the dictionary values back to a list to get unique recipes
-        unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    return render_template('recipe/breakfast.html', unique_recipe_list = unique_recipe_list )
-
-
-
-
 @app.route("/creation/<int:user_id>")
 def creation(user_id):
     user = User.query.get_or_404(user_id)
@@ -485,435 +481,10 @@ def others(user_id):
     return render_template('creation.html',user_recipe=user_recipe)
 
 
-# @app.route("/<int:recipe_id>")
-# def show_recipe(recipe_id,):
-#     """Show a single recipe."""
-#     # import pdb
-#     # pdb.set_trace()
-    
-#     results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Appetizer")).all()
-#     for result in results:
-#             appetizer_recipes = []
-
-#     # Extract the required fields from the results
-#     for result in results:
-#         appetizer_recipes.append({
-#             "id":result.id,
-#             "recipe_name": result.recipe_name,
-#             "recipe_image": result.recipe_image,
-#             "recipe_description": result.recipe_description,
-#             "ingredients":result.ingredients
-#         })
-
-#     unique_recipes = {}
-#     for recipe in appetizer_recipes :
-#         unique_recipes[recipe['recipe_name']] = recipe
-
-# # Convert the dictionary values back to a list to get unique recipes
-#         unique_recipe_list = list(unique_recipes.values())
-
-#     # session = db.session
-#     # update(Recipe).where(Recipe.id == recipe_id ).values(favorite_recipe=True).execute(session)
-#     # db.session.commit()
-#     db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: True})
-#     db.session.commit()
-
-
-# # Commit the changes
-
-
-
-#     # Render the results using a template (assuming you have a template)
-#     return render_template('recipe.html', unique_recipe_list = unique_recipe_list )
-
-@app.route("/Breakfastup/<int:recipe_id>")
-def up_recipe(recipe_id):
-    """favorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: True})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type=db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Appetizer","Breakfast" 
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Breakfast")).all()
-    # iterate over the results array and only take unique value 
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id":result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients":result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes :
-        unique_recipes[recipe['recipe_name']] = recipe
-
-# Convert the dictionary values back to a list to get unique recipes
-        unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    flash('favorited recipe')
-    return render_template('recipe/breakfast.html', unique_recipe_list = unique_recipe_list )
-
-
-
-@app.route("/Breakfastdown/<int:recipe_id>")
-def down_recipe(recipe_id):
-    """unfavorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: False})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type=db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Appetizer","Breakfast" 
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Breakfast")).all()
-    # iterate over the results array and only take unique value 
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id":result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients":result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes :
-        unique_recipes[recipe['recipe_name']] = recipe
-
-# Convert the dictionary values back to a list to get unique recipes
-        unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    flash('unfavorited recipe')
-    return render_template('recipe/breakfast.html', unique_recipe_list = unique_recipe_list)
-
-# app.py
-
-@app.route("/Appetizer")
-def Appetizer():
-    # import pdb
-    # pdb.set_trace()
-    
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Appetizer")).all()
-    for result in results:
-            recipes = []
-
-    # Extract the required fields from the results
-    for result in results:
-        recipes.append({
-            "id":result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            "ingredients":result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes :
-        unique_recipes[recipe['recipe_name']] = recipe
-
-# Convert the dictionary values back to a list to get unique recipes
-        unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    return render_template('recipe/appetizer.html', unique_recipe_list = unique_recipe_list )
-
-
-
-
-
-
-
-@app.route("/Appetizerup/<int:recipe_id>")
-def Appetizerup_recipe(recipe_id):
-    """favorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: True})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type=db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Appetizer","Breakfast" 
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Appetizer")).all()
-    # iterate over the results array and only take unique value 
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id":result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients":result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes :
-        unique_recipes[recipe['recipe_name']] = recipe
-
-# Convert the dictionary values back to a list to get unique recipes
-        unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    flash('favorited recipe')
-    return render_template('recipe/appetizer.html', unique_recipe_list = unique_recipe_list )
-
-
-
-@app.route("/Appetizerdown/<int:recipe_id>")
-def down_recipeAppetizer(recipe_id):
-    """unfavorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: False})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type=db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Appetizer","Breakfast" 
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Appetizer")).all()
-    # iterate over the results array and only take unique value 
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id":result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients":result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes :
-        unique_recipes[recipe['recipe_name']] = recipe
-
-# Convert the dictionary values back to a list to get unique recipes
-        unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-
-    return render_template('recipe/appetizer.html', unique_recipe_list = unique_recipe_list)
-
 # app.py
 
 
-@app.route("/Snack")
-def Snack():
-    # import pdb
-    # pdb.set_trace()
 
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Snack")).all()
-    for result in results:
-        recipes = []
-
-    # Extract the required fields from the results
-    for result in results:
-        recipes.append({
-            "id": result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            "ingredients": result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes:
-        unique_recipes[recipe['recipe_name']] = recipe
-
-    # Convert the dictionary values back to a list to get unique recipes
-    unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    return render_template('recipe/snack.html', unique_recipe_list=unique_recipe_list)
-
-
-@app.route("/Snackup/<int:recipe_id>")
-def Snackup_recipe(recipe_id):
-    """favorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: True})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type = db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Snack", "Breakfast"
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Snack")).all()
-    # iterate over the results array and only take unique value
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id": result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients": result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes:
-        unique_recipes[recipe['recipe_name']] = recipe
-
-    # Convert the dictionary values back to a list to get unique recipes
-    unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    flash('favorited recipe')
-
-    return render_template('recipe/snack.html', unique_recipe_list=unique_recipe_list)
-
-
-@app.route("/Snackdown/<int:recipe_id>")
-def down_recipeSnack(recipe_id):
-    """unfavorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: False})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type = db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Snack", "Breakfast"
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Snack")).all()
-    # iterate over the results array and only take unique value
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id": result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients": result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes:
-        unique_recipes[recipe['recipe_name']] = recipe
-
-    # Convert the dictionary values back to a list to get unique recipes
-    unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    flash('unfavorited recipe')
-    return render_template('recipe/snack.html', unique_recipe_list=unique_recipe_list)
-
-
-
-@app.route("/Beverage")
-def Beveragee():
-    # import pdb
-    # pdb.set_trace()
-
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Beverage")).all()
-    for result in results:
-        recipes = []
-
-    # Extract the required fields from the results
-    for result in results:
-        recipes.append({
-            "id": result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            "ingredients": result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes:
-        unique_recipes[recipe['recipe_name']] = recipe
-
-    # Convert the dictionary values back to a list to get unique recipes
-    unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-    return render_template('recipe/beverage.html', unique_recipe_list=unique_recipe_list)
-
-
-@app.route("/Beverageup/<int:recipe_id>")
-def Beverageup_recipe(recipe_id):
-    """favorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: True})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type = db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Snack", "Breakfast"
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Beverage")).all()
-    # iterate over the results array and only take unique value
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id": result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients": result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes:
-        unique_recipes[recipe['recipe_name']] = recipe
-
-    # Convert the dictionary values back to a list to get unique recipes
-    unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-
-    return render_template('recipe/beverage.html', unique_recipe_list=unique_recipe_list)
-
-
-@app.route("/Beveragedown/<int:recipe_id>")
-def down_recipeBeverage(recipe_id):
-    """unfavorite a recipe."""
-    # import pdb
-    # pdb.set_trace()
-
-    db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: False})
-    db.session.commit()
-    # # getting the recipe type value that has that specific recipe _id :
-    # type = db.session.query(Recipe.recipe_type).filter(Recipe.id == recipe_id)
-    # type is supposed to be a recipe type like "Snack", "Breakfast"
-    results = db.session.query(Recipe).filter(Recipe.recipe_type.any("Beverage")).all()
-    # iterate over the results array and only take unique value
-    recipes = []
-    for result in results:
-        recipes.append({
-            "id": result.id,
-            "recipe_name": result.recipe_name,
-            "recipe_image": result.recipe_image,
-            "recipe_description": result.recipe_description,
-            # "recipe_type":result.recipe_type,
-            "ingredients": result.ingredients
-        })
-
-    unique_recipes = {}
-    for recipe in recipes:
-        unique_recipes[recipe['recipe_name']] = recipe
-
-    # Convert the dictionary values back to a list to get unique recipes
-    unique_recipe_list = list(unique_recipes.values())
-
-    # Render the results using a template (assuming you have a template)
-
-    return render_template('recipe/beverage.html', unique_recipe_list=unique_recipe_list)
 
 # Create a function to retrieve and process recipes
 def get_processed_recipes(recipe_type):
@@ -936,13 +507,15 @@ def get_processed_recipes(recipe_type):
     unique_recipe_list = list(unique_recipes.values())
     return unique_recipe_list
 
-def update_and_get_recipes(recipe_type, recipe_id, favorite=True, ):
+
+
+
+
+def update_and_get_recipes(recipe_type, recipe_id, favorite=True):
     # Update the favorite status
 
     db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.favorite_recipe: favorite})
-    # db.session.query(Recipe).filter(Recipe.id == recipe_id).update({Recipe.user_id:user_id })
-    db.session.commit()
-
+   
     # Retrieve the recipes of the specified type
     results = db.session.query(Recipe).filter(Recipe.recipe_type.any(recipe_type)).all()
     recipes = []
@@ -962,22 +535,44 @@ def update_and_get_recipes(recipe_type, recipe_id, favorite=True, ):
     unique_recipe_list = list(unique_recipes.values())
     return unique_recipe_list
 
+
+
+def checking(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    existing_favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    if not existing_favorite:
+        favorite = Favorite(user_id=user_id, recipe_id=recipe_id)
+        db.session.add(favorite)
+        db.session.commit()
+        flash("Favorited recipe")
+    else:
+        flash("Recipe is already a favorite")
+
+
 @app.route("/Lunch")
 def Lunch():
     unique_recipe_list = get_processed_recipes("Lunch")
     return render_template('recipe/lunch.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/Lunchup/<int:recipe_id>")
-def Lunchup_recipe(recipe_id):
-
+@app.route("/Lunchup/<int:recipe_id>/<int:user_id>")
+def Lunchup_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
     unique_recipe_list = update_and_get_recipes("Lunch", recipe_id, favorite=True)
-    flash("favorited recipe")
     return render_template('recipe/lunch.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/Lunchdown/<int:recipe_id>")
-def down_recipeLunch(recipe_id):
+@app.route("/Lunchdown/<int:recipe_id>/<int:user_id>")
+def down_recipeLunch(recipe_id,user_id):
+    user = User.query.get_or_404(user_id)
+        # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
     unique_recipe_list = update_and_get_recipes("Lunch", recipe_id, favorite=False)
-    flash("unfavorited recipe")
     return render_template('recipe/lunch.html', unique_recipe_list=unique_recipe_list)
 
 @app.route("/Baked")
@@ -985,35 +580,50 @@ def Baked():
     unique_recipe_list = get_processed_recipes("Baked")
     return render_template('recipe/Baked.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/Bakedup/<int:recipe_id>")
-def Baked_recipe(recipe_id):
+@app.route("/Bakedup/<int:recipe_id>/<int:user_id>")
+def Baked_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
     unique_recipe_list = update_and_get_recipes("Baked", recipe_id, favorite=True)
-    flash("favorited recipe")
     return render_template('recipe/Baked.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/Bakeddown/<int:recipe_id>")
-def Baked_recipeLunch(recipe_id):
+@app.route("/Bakeddown/<int:recipe_id>/<int:user_id>")
+def Baked_recipeLunch(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
     unique_recipe_list = update_and_get_recipes("Baked", recipe_id, favorite=False)
-    flash("unfavorited recipe")
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
     return render_template('recipe/Baked.html', unique_recipe_list=unique_recipe_list)
-
-
 
 @app.route("/Side Dish")
 def SideDish():
     unique_recipe_list = get_processed_recipes("Side Dish")
     return render_template('recipe/SideDish.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/SideDishup/<int:recipe_id>")
-def SideDish_recipe(recipe_id):
+@app.route("/SideDishup/<int:recipe_id>/<int:user_id>")
+def SideDish_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
     unique_recipe_list = update_and_get_recipes("Side Dish", recipe_id, favorite=True)
-    flash("favorited recipe")
     return render_template('recipe/SideDish.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/SideDishdown/<int:recipe_id>")
-def down_recipeSideDish(recipe_id):
+@app.route("/SideDishdown/<int:recipe_id>/<int:user_id>")
+def down_recipeSideDish(recipe_id,user_id):
+    user = User.query.get_or_404(user_id)
+        # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
     unique_recipe_list = update_and_get_recipes("Side Dish", recipe_id, favorite=False)
-    flash("unfavorited recipe")
     return render_template('recipe/SideDish.html', unique_recipe_list=unique_recipe_list)
 
 
@@ -1022,68 +632,226 @@ def SauceCondiment():
     unique_recipe_list = get_processed_recipes("Sauce and Condiment")
     return render_template('recipe/SauceCondiment.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/SauceCondimentup/<int:recipe_id>")
-def SauceCondiment_recipe(recipe_id):
+@app.route("/SauceCondimentup/<int:recipe_id>/<int:user_id>")
+def SauceCondiment_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
     unique_recipe_list = update_and_get_recipes("Sauce and Condiment", recipe_id, favorite=True)
-    flash("favorited recipe")
     return render_template('recipe/SauceCondiment.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/SauceCondimentdown/<int:recipe_id>")
-def down_SauceCondiment(recipe_id):
+@app.route("/SauceCondimentdown/<int:recipe_id>/<int:user_id>")
+def down_SauceCondiment(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+        # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    
     unique_recipe_list = update_and_get_recipes("Sauce and Condiment", recipe_id, favorite=False)
-    flash("unfavorited recipe")
     return render_template('recipe/SauceCondiment.html', unique_recipe_list=unique_recipe_list)
+
+
+@app.route("/Appetizer")
+def Appetizer():
+    unique_recipe_list = get_processed_recipes("Appetizer")
+    return render_template('recipe/appetizer.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Appetizerup/<int:recipe_id>/<int:user_id>")
+def SAppetizer(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
+    unique_recipe_list = update_and_get_recipes("Appetizer", recipe_id, favorite=True)
+    return render_template('recipe/appetizer.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Appetizerdown/<int:recipe_id>/<int:user_id>")
+def downAppetizer(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+        # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    
+    unique_recipe_list = update_and_get_recipes("Appetizer", recipe_id, favorite=False)
+    return render_template('recipe/appetizer.html', unique_recipe_list=unique_recipe_list)
+
+
+@app.route("/Breakfast")
+def Breakfast():
+    unique_recipe_list = get_processed_recipes("Breakfast")
+    return render_template('recipe/breakfast.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Breakfastup/<int:recipe_id>/<int:user_id>")
+def SABreakfast(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
+    unique_recipe_list = update_and_get_recipes("Breakfast", recipe_id, favorite=True)
+    return render_template('recipe/breakfast.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Breakfastdown/<int:recipe_id>/<int:user_id>")
+def downBreakfast(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+        # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    
+    unique_recipe_list = update_and_get_recipes("Breakfast", recipe_id, favorite=False)
+    flash("unfavorited")
+    return render_template('recipe/breakfast.html', unique_recipe_list=unique_recipe_list)
 
 @app.route("/Salad and Salad Dressing")
 def SaladDressing():
     unique_recipe_list = get_processed_recipes("Salad and Salad Dressing")
     return render_template('recipe/SaladDressing.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/SaladDressingup/<int:recipe_id>")
-def SaladDressing_recipe(recipe_id):
+@app.route("/SaladDressingup/<int:recipe_id>/<int:user_id>")
+def SaladDressing_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
     unique_recipe_list = update_and_get_recipes("Salad and Salad Dressing", recipe_id, favorite=True)
-    flash("favorited recipe")
     return render_template('recipe/SaladDressing.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/SaladDressingdown/<int:recipe_id>")
-def down_SaladDressing(recipe_id):
+
+@app.route("/SaladDressingdown/<int:recipe_id>/<int:user_id>")
+def down_SaladDressing(recipe_id,user_id):
+    user = User.query.get_or_404(user_id)
+        # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    
     unique_recipe_list = update_and_get_recipes("Salad and Salad Dressing", recipe_id, favorite=False)
-    flash("unfavorited recipe")
+    
     return render_template('recipe/SaladDressing.html', unique_recipe_list=unique_recipe_list)
-
 
 @app.route("/Dessert")
 def SaladDressingo():
     unique_recipe_list = get_processed_recipes("Dessert")
     return render_template('recipe/Dessert.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/Dessertup/<int:recipe_id>")
-def dessert_recipe(recipe_id):
+@app.route("/Dessertup/<int:recipe_id>/<int:user_id>")
+def dessert_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
     unique_recipe_list = update_and_get_recipes("Dessert", recipe_id, favorite=True)
-    flash("favorited recipe")
+    # flash("favorited recipe")
     return render_template('recipe/Dessert.html', unique_recipe_list=unique_recipe_list)
 
-@app.route("/Dessertdown/<int:recipe_id>")
-def dessert(recipe_id):
-    unique_recipe_list = update_and_get_recipes("Dessert", recipe_id, favorite=False)
-    flash("unfavorited recipe")
-    return render_template('recipe/Dessert.html', unique_recipe_list=unique_recipe_list)
-
-
-
-
-
-
-
-
-
-
+@app.route("/Dessertdown/<int:recipe_id>/<int:user_id>")
+def dessert(recipe_id,user_id):
+    user = User.query.get_or_404(user_id)
+        # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
     
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    
+    unique_recipe_list = update_and_get_recipes("Dessert", recipe_id, favorite=False)
+    return render_template('recipe/Dessert.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Snack")
+def Snacko():
+    unique_recipe_list = get_processed_recipes("Snack")
+    return render_template('recipe/Snack.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Snackup/<int:recipe_id>/<int:user_id>")
+def snack_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
+    unique_recipe_list = update_and_get_recipes("Snack", recipe_id, favorite=True)
+    # flash("favorited recipe")
+    return render_template('recipe/Snack.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Snackdown/<int:recipe_id>/<int:user_id>")
+def snacks(recipe_id,user_id):
+    user = User.query.get_or_404(user_id)
+    # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    
+    unique_recipe_list = update_and_get_recipes("Snack", recipe_id, favorite=False)
+    return render_template('recipe/Snack.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Main Dish")
+def Maindish():
+    unique_recipe_list = get_processed_recipes("Main Dish")
+    return render_template('recipe/MainDish.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/MainDishup/<int:recipe_id>/<int:user_id>")
+def main_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
+    unique_recipe_list = update_and_get_recipes("Main Dish", recipe_id, favorite=True)
+    # flash("favorited recipe")
+    return render_template('recipe/MainDish.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/MainDishdown/<int:recipe_id>/<int:user_id>")
+def mains(recipe_id,user_id):
+    user = User.query.get_or_404(user_id)
+    # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    
+    unique_recipe_list = update_and_get_recipes("Snack", recipe_id, favorite=False)
+    return render_template('recipe/MainDish.html', unique_recipe_list=unique_recipe_list)
 
 
+@app.route("/Beverage")
+def Beverage():
+    unique_recipe_list = get_processed_recipes("Beverage")
+    return render_template('recipe/beverage.html', unique_recipe_list=unique_recipe_list)
+
+@app.route("/Beverageup/<int:recipe_id>/<int:user_id>")
+def beverages_recipe(recipe_id,user_id):
+    usero = User.query.get_or_404(user_id)
+    checking(recipe_id,user_id)
+    unique_recipe_list = update_and_get_recipes("Beverage", recipe_id, favorite=True)
+    # flash("favorited recipe")
+    return render_template('recipe/beverage.html', unique_recipe_list=unique_recipe_list)
 
 
-
+@app.route("/Beveragedown/<int:recipe_id>/<int:user_id>")
+def beverage(recipe_id,user_id):
+    user = User.query.get_or_404(user_id)
+    # Check if the specified recipe is a favorite for the user
+    favorite = Favorite.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
+    
+    if favorite:
+        # Recipe is a favorite, remove the favorite record
+        db.session.delete(favorite)
+        db.session.commit()
+        flash("Unfavorited recipe")
+    unique_recipe_list = update_and_get_recipes("Beverage", recipe_id, favorite=False)
+    return render_template('recipe/beverage.html', unique_recipe_list=unique_recipe_list)
 
     
 @app.route("/favorite/<int:user_id>")
@@ -1091,56 +859,26 @@ def favorite(user_id):
     """List all favorite recipes."""
     recipe_favorites=[]
     user = User.query.get_or_404(user_id)
-    favorites = Recipe.query.filter_by(favorite_recipe=True, user_id=user_id).all()  # Use filter_by for simple equality
+    favorite_records = Favorite.query.filter_by(user_id=user_id).all()
+
+    # Extract the recipe_ids from the favorite records 
+    recipe_ids = [record.recipe_id for record in favorite_records]
+    # making sure there won't be any duplicates record of id
+    recipe_dids = list(set(recipe_ids))
+
+    # Query the Recipe table to get the details of the favorite recipes
+    favorites = Recipe.query.filter(Recipe.id.in_(recipe_dids)).all()
 
     for fav in favorites:
-        recipe_favorites.append({
+            recipe_favorites.append({
             'id': fav.id,
             'recipe_name': fav.recipe_name,
             'recipe_image': fav.recipe_image,
             'recipe_description': fav.recipe_description,
-            'ingredients': fav.ingredients,
-            'user_id': user.id
+            'ingredients': fav.ingredients
+            # 'user_id': user.id
         })
-    return render_template("favorite.html",recipe_favorites=recipe_favorites)
+  
+    return render_template("favorite.html",recipe_favorites=recipe_favorites,favorites=favorites)
       
-    # for favorite in favorites:
-    #     fav=favorite["recipe_name"]
-    # import pdb
-    # pdb.set_trace()
-    # return render_template("appetizers.html")
-
-    
-
-
-
-
-
-
-    
-    
-
-
-
-
-
-
-#     search_term = request.args.get('term', 'Appetizer')  # Default to 'Appetizer' if 'term' not provided
-
-#     # Modify the query to use LIKE and ANY together
-#     results = Recipe.query.filter(func.any(Recipe.recipe_type.ilike('%' + search_term + '%'))).all()
-
-#    Search for rows where 'Breakfast' is in the 'recipe_type' array
-#     search_term = 'Appetizer'
-    # results = db.session.query(Recipe.recipe_name, Recipe.recipe_image).filter(any_(Recipe.recipe_type).contains(search_term)).all()
-    # import pdb
-    # pdb.set_trace()
-
-    # Get the results
-    # results = db.query.all()
-    # for result in results:
-    #     recipe_name, recipe_image = result
-    # print(f"Recipe Name: {recipe_name}, Recipe Image: {recipe_image}")
-
-
     

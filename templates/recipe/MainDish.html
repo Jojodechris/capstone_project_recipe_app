@@ -1,4 +1,3 @@
-<!-- snack.html -->
 {% extends "base2.html" %}
 
 {% block recipe_content %}
@@ -12,10 +11,10 @@
       <div class="col-4">
       <div class="card-body">
         <div class="like">
-            <a href="/Breakfastup/{{recipe.id }}" class="black up"><i class="fa fa-thumbs-up fa-3x like" data-recipe-id="{{ recipe.id }}"></i></a>
+          <a href="/MainDishup/{{recipe.id }}/{{g.user.id}}" class="black up"><i class="fa fa-thumbs-up fa-3x like" data-recipe-id="{{ recipe.id }}"></i></a>
           </div>
           <div class="dislike">
-            <a href="/Breakfastdown/{{ recipe.id }}" class="black down"><i class="fa fa-thumbs-down fa-3x like" data-recipe-id="{{ recipe.id }}"></i></a>
+          <a href="/MainDishdown/{{ recipe.id }}/{{g.user.id}}" class="black down"><i class="fa fa-thumbs-down fa-3x like" data-recipe-id="{{ recipe.id }}"></i></a>
           </div> 
         <p class="fs-2">{{ recipe.recipe_name }}</p>
         <p class="card-text">{{ recipe.recipe_description }}</p>
@@ -32,7 +31,6 @@
 </div>
 </div>
 {% endblock %}
-
 
 
 

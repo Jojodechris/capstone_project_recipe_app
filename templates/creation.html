@@ -7,7 +7,9 @@
     <h1>user Recipes</h1>
 
     <ul>
+        {%if user_recipe %}
         {% for recipe in user_recipe %}
+
             <li>
                 <h2>{{ recipe.name }}</h2>
                 <img src="{{ recipe.image }}" alt="{{ recipe.name }}" width="200">
@@ -19,6 +21,11 @@
 
         
         {% endfor %}
+        {% else %}
+        <li><em>No recipes created yet.</em></li>
+        {% endif %}
+    </ul>
+</body>
     </ul>
 </body>
 </html>

@@ -19,6 +19,9 @@
 </head>
 
 <body>
+  {% for msg in get_flashed_messages() %}
+  <div class="alert alert-info">{{msg}}</div>
+  {% endfor %}
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a href="/" class="navbar-brand">Food Recipe app!!</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navigation">
