@@ -13,6 +13,9 @@ Food recipe app is an app that provide users with many type of recipe such as ap
   
 # Demo
 
+![IMG_8744](https://github.com/Jojodechris/capstone_project_recipe_app/assets/123711200/65dad6c7-c46a-40a1-aedd-0b951588a028)
+
+
 # Technologies Used
 
 - HTML
