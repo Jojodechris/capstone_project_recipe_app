@@ -139,7 +139,7 @@ def add_user_to_g():
 
         if CURR_USER_KEY in session:
             g.user = User.query.get(session[CURR_USER_KEY])
-        # g.user=None
+        g.user=None
 
 
 
@@ -266,7 +266,7 @@ def homepage():
     # user =g.user
 
 #   g.user = User.query.get(session[CURR_USER_KEY])
-  if g.user:
+  if g.user :
         
 #   if 'user_id' in session:  # Check if the user is logged in
 #         user_id = session['user_id']
