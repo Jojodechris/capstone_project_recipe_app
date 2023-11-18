@@ -1,4 +1,4 @@
-import os,json,requests
+import os,json
 
 from flask import Flask,flash,render_template,flash,request, redirect, session, g,render_template_string
 from flask_debugtoolbar import DebugToolbarExtension
@@ -414,7 +414,7 @@ def handleModification():
         if form.validate_on_submit():
             user.username=username
             user.email=email
-            user.password=password
+            user.password=form.password
             db.session.commit()
             flash('Your profile has been modified.', category='success')
             # im                                                                                                                 port pdb
