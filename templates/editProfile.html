@@ -1,8 +1,8 @@
 {% extends "base3.html" %}           
 {% block nav_content %}  
            <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link active" href="/users/profile">profile</a>
-            <a class="nav-item nav-link" href="/create/{{g.user.id}}">create a recipe<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="/users/profile">profile<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/create/{{g.user.id}}">create a recipe</a>
             <a class="nav-item nav-link" href="/favorite/{{g.user.id}}">{{g.user.username}}'s favorite recipe</a>
             <a class="nav-item nav-link" href="/logout">Log out</a>
 {% endblock %}

@@ -37,6 +37,25 @@ db.create_all()
 
 @app.before_request
 def add_user_to_g():
+     if CURR_USER_KEY in session:
+        g.user = User.query.get(session[CURR_USER_KEY])
+     else:
+           g.user = None
+         
+def do_login(user):
+    """Log in user."""
+
+
+    session[CURR_USER_KEY] = user.id
+
+
+def do_logout():
+    """Logout user."""
+
+    if CURR_USER_KEY in session:
+        del session[CURR_USER_KEY]
+
+
         
         # import pdb
         # pdb.set_trace()
@@ -136,10 +155,7 @@ def add_user_to_g():
         #                 )
         #                 db.session.add(new_recipe)
         #                 db.session.commit()
-
-        if CURR_USER_KEY in session:
-            g.user = User.query.get(session[CURR_USER_KEY])
-        g.user=None
+        
 
 
 
@@ -149,20 +165,7 @@ def add_user_to_g():
 
 #     return render_template('404.html'), 404
 
-    
-def do_login(user):
-    """Log in user."""
 
-
-    session[CURR_USER_KEY] = user.id
-    # user=g.user
-
-
-def do_logout():
-    """Logout user."""
-
-    if CURR_USER_KEY in session:
-        del session[CURR_USER_KEY]
 
 
 
@@ -265,15 +268,21 @@ def homepage():
 #                                  form.password.data)
     # user =g.user
 
-  g.user = User.query.get(session[CURR_USER_KEY])
-  if g.user :
+#   g.user = User.query.get(session[CURR_USER_KEY])
+#   if g.user :
+        
         
 #   if 'user_id' in session:  # Check if the user is logged in
 #         user_id = session['user_id']
 #         user = User.query.get(user_id)  # Replace with your user retrieval logic
-        return render_template('home.html',user=g.user)
-  form=LoginForm()
-  return redirect("/login")
+  return render_template('home.html')
+#   form=LoginForm()
+#   return redirect("/login")
+
+# @app.route("/welcome/<int:user_id>")
+# def welcome(user_id):
+#     g.user= User.query.get_or_404(user_id)
+#     return render_template("home.html",user=g.user)
 
 #   form=SignUpForm()
 #   METHOD = "recipe_types.get.v2"
@@ -388,11 +397,6 @@ def create_recipe(user_id):
 @app.route('/users/profile', methods=["GET"])
 def profile():
     """Update profile for current user."""
-
-    if not g.user:
-        flash("Access unauthorized.", "danger")
-        return redirect("/")
-    
     
     form=userEditForm()
     return render_template ("editProfile.html",form=form)

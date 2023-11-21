@@ -22,6 +22,15 @@
   {% for msg in get_flashed_messages() %}
   <div class="alert alert-info">{{msg}}</div>
   {% endfor %}
+  {% if not g.user %}
+  <div class="row justify-content-md-center">
+    <div class="col-md-7 col-lg-5">
+  <h2 class="join-message">FOOD RECIPE APP</h2>
+  <h6 class="join-message"><em>the app where you can learn many recipes</em></h6>
+
+      <li><a href="/signup">Sign up</a></li>
+      <li><a href="/login">Log in</a></li>
+      {% else %}
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a href="/" class="navbar-brand">Food Recipe app!!</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navigation">
@@ -32,14 +41,15 @@
         <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="/users/profile">profile</a>
         <a class="nav-item nav-link" href="/create/{{g.user.id}}">create a recipe</a>
-        <a class="nav-item nav-link" href="/favorite/{{g.user.id}}">{{user.username}}'s favorite recipe</a>
+        <a class="nav-item nav-link" href="/favorite/{{g.user.id}}">{{g.user.username}}'s favorite recipe</a>
         <a class="nav-item nav-link" href="/logout">Log out</a>
 
       </div>
     </div>
+
   </nav>
     <div class="container">
-    <h>hey {{user.username}},nice to see you here!  what are you looking for?</h1>
+    <h>hey {{g.user.username}},nice to see you here!  what are you looking for?</h1>
     <ul>
         <!-- <a href="/foodfrom"><li>Food from various countries</a></li> -->
 
@@ -58,6 +68,8 @@
         <a href="Sauce and Condiment"><li>Sauce and Condiment</li></a>
        
     </ul>
+    {% endif %}
+</div>
 </div>
 </body>
 </html>
