@@ -265,7 +265,7 @@ def homepage():
 #                                  form.password.data)
     # user =g.user
 
-#   g.user = User.query.get(session[CURR_USER_KEY])
+  g.user = User.query.get(session[CURR_USER_KEY])
   if g.user :
         
 #   if 'user_id' in session:  # Check if the user is logged in
