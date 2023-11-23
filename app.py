@@ -14,12 +14,12 @@ CURR_USER_KEY = "curr_user"
 
 app = Flask(__name__)
 
-
+# pg_dump --column-inserts --data-only --table=recipes capstone1 > recipes.sql
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
 app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get('DATABASE_URL', 'postgresql:///capstone1'))
+    os.environ.get('DATABASE_URL'))
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -27,7 +27,7 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.debug = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 
-toolbar = DebugToolbarExtension(app)
+# toolbar = DebugToolbarExtension(app)
 # bcrypt = Bcrypt(app)
 connect_db(app)
 app.app_context().push()
