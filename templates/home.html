@@ -16,9 +16,21 @@
         href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <!-- <link rel="stylesheet" href="/static/stylesheets/style.css"> -->
   <link rel="shortcut icon" href="/static/favicon.ico">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
+  <div class="bg">
+
+<!-- <p class="py-5 text-center">This example creates a full page background image. Try to resize the browser window to see how it always will cover the full screen (when scrolled to top), and that it scales nicely on all screen sizes.</p> -->
+  <!-- <div
+  class="bg-image"
+  style="
+    background-image: url('https://www.google.com/imgres?imgurl=https%3A%2F%2Fhealth.clevelandclinic.org%2Fwp-content%2Fuploads%2Fsites%2F3%2F2021%2F01%2FfastFoods1-1199461884-770x533-1-650x428.jpg&imgrefurl=https%3A%2F%2Fhealth.clevelandclinic.org%2Fheres-how-fast-food-can-affect-your-body%2F&docid=BeKTAz1QopkIKM&tbnid=BaGUlMBaYD4wUM&vet=12ahUKEwiqoom83OqCAxXrk4kEHeKRA8gQM3oECHYQAA..i&w=650&h=428&ved=2ahUKEwiqoom83OqCAxXrk4kEHeKRA8gQM3oECHYQAA');
+    height: 100vh;
+  "
+>
+</div> -->
   {% for msg in get_flashed_messages() %}
   <div class="alert alert-info">{{msg}}</div>
   {% endfor %}
@@ -43,14 +55,15 @@
         <a class="nav-item nav-link" href="/create/{{g.user.id}}">create a recipe</a>
         <a class="nav-item nav-link" href="/favorite/{{g.user.id}}">{{g.user.username}}'s favorite recipe</a>
         <a class="nav-item nav-link" href="/logout">Log out</a>
-
+      </div>
       </div>
     </div>
 
   </nav>
+  <div class="bgg">
     <div class="container">
-    <h>hey {{g.user.username}},nice to see you here!  what are you looking for?</h1>
-    <ul>
+    <h3>hey {{g.user.username}},nice to see you here!  what are you looking for?</h3>
+    <!-- <ul> -->
         <!-- <a href="/foodfrom"><li>Food from various countries</a></li> -->
 
         <a href="/others/{{g.user.id}}"><li>Food recipe created by others users</li>
@@ -67,8 +80,19 @@
         <a href="Side Dish"><li>Side Dish</li></a>
         <a href="Sauce and Condiment"><li>Sauce and Condiment</li></a>
        
-    </ul>
+    <!-- </ul> -->
     {% endif %}
+</div>
+</div>
+
+
+<!-- <div class="bgg"> -->
+
+<br>
+<br>
+<div class="row justify-content">
+  <div class="col-md-7 col-lg-5">
+<h4 class="join-message"><em> <small class="text-muted">the app where you can learn many recipes...</small></em></h4>
 </div>
 </div>
 </body>

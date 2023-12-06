@@ -2,8 +2,20 @@
 <html>
 <head>
     <title> favorites recipes</title>
+    <link rel="stylesheet"
+    href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+<script src="https://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/popper"></script>
+<script src="https://unpkg.com/bootstrap"></script>
+
+<link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<!-- <link rel="stylesheet" href="/static/stylesheets/style.css"> -->
+<link rel="shortcut icon" href="/static/favicon.ico">
+<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <div class="bgg">
     <h1> Your favorites recipes</h1>
 
     <ul>
@@ -20,7 +32,9 @@
                 </ul>
                 {% endfor %}
             </li>
+        <!-- </div> -->
     {% endfor %}
+<!-- </div> -->
     {% else %}
     <li><em>No favorite recipes yet.</em></li>
       {% endif %}
@@ -39,5 +53,6 @@
             </li> -->
         <!-- {% endfor %} -->
         </ul>
+        </div>
 </body>
 </html>
