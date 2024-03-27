@@ -25,8 +25,7 @@ Food recipe app is an app that provide users with many type of recipe such as ap
 
 ![IMG_0123](https://github.com/Jojodechris/capstone_project_recipe_app/assets/123711200/1fc9314a-ee1e-46e3-b802-3c67d9a3c063)
 
-
-![IMG_9214_2](https://github.com/Jojodechris/capstone_project_recipe_app/assets/123711200/e789a5f7-dca7-45d3-a70d-2da7b836179e)
+![IMG_0125](https://github.com/Jojodechris/capstone_project_recipe_app/assets/123711200/12dbc7d7-a998-4e70-9c93-665c9ec3778f)
 
 
 
