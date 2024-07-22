@@ -5,13 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=!, initial-scale=1.0">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/style.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="container-signup">
 <div class="row justify-content-md-center">
   <div class="col-md-7 col-lg-5">
-    <h2 class="join-message">Welcome to food recipe app!!</h2>
+    <h1 class="join-message">Login</h1>
+    <br>
 
     <form method="POST" id="user_form">
       {% for msg in get_flashed_messages() %}
@@ -22,13 +25,14 @@
         {% for error in field.errors %}
           <span class="text-danger">{{ error }}</span>
         {% endfor %}
-        {{ field(placeholder=field.label.text, class="form-control") }}
+        {{ field(placeholder=field.label.text, class="form-control small-input") }}
       {% endfor %}
 
       <button class="btn btn-primary btn-block btn-lg">Log in</button>
     </form>
     <p>you don't have an account?<a href="/signup">Sign up</a></p>
   </div>
+</div>
 </div>
 </body>
 </html>
